@@ -5,15 +5,15 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637450363791024973
-    m_Hash: 4159699649
+      ticks: 637452261259549712
+    m_Hash: 2766615670
   m_LockFileStatus:
     m_FilePath: D:/Dev/Unity/Projects/Pokemon Red Stadium/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637450364126227854
+      ticks: 637452262148376663
     m_Hash: 2815657256
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
