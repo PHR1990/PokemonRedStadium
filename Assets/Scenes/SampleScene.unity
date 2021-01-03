@@ -1824,7 +1824,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1050181471
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3299,7 +3299,6 @@ MonoBehaviour:
   enemyPokemonSlider: {fileID: 781696955}
   enemyPokemonNameText: {fileID: 197011872}
   enemyPokemonLevelText: {fileID: 1890380934}
-  enemyPokemonHpText: {fileID: 1050181472}
   enemyPokemonImage: {fileID: 1029721382}
   moveOneBtn: {fileID: 1409939371}
   moveTwoBtn: {fileID: 2125909365}
