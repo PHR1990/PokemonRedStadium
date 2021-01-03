@@ -26,8 +26,12 @@ public class PokemonBattleController
 
         int attack = attacking.getAttackStat();
         int defense = defending.getDefenseStat();
-        if (move.effect == Effect.Special) {
 
+        attack = Mathf.RoundToInt(attack * Calculators.statusModifierFlatToPerccentage(attacking.attackStatisticsChange));
+        defense = Mathf.RoundToInt(defense * Calculators.statusModifierFlatToPerccentage(defending.defenseStatisticsChange));
+
+        if (move.effect == Effect.Special) {
+            
             attack = attacking.getSpecialStat();
             defense = defending.getSpecialStat();
         }
@@ -56,11 +60,22 @@ public class PokemonBattleController
             
             int damage = calculateDamage(attackingPokemon, defendingPokemon, move);
             
+            Effectiveness effectiveness 
+                = moveEffectiveness(move, defendingPokemon.basePokemon);
+
+            if (effectiveness.Equals(Effectiveness.TwiceWeak)) {
+                damage = damage * 2;
+            }
+
             defendingPokemon.currentHp = defendingPokemon.currentHp - damage; 
 
             emitEventDelegate(new MoveEvent(defendingPokemon, move));
 
-            // TODO Not very effective, very effective
+            if (effectiveness.Equals(Effectiveness.TwiceWeak)) {
+                emitEventDelegate(
+                    new TextMessageEvent("It's super effective!"));
+            }
+            // TODO separete effectiveness in a separate class
             
         }
         // TODO missing speed change
@@ -149,5 +164,46 @@ public class PokemonBattleController
         triggerTurnsWereExecutedDelegate();
         
     }
+
+    private Effectiveness moveEffectiveness(Move move, Pokemon pokemon) {
+        switch (move.type) {
+            case Type.Fire : 
+                return getFireEffectiveness(pokemon);
+            case Type.Water : 
+                return getWaterEffectiveness(pokemon);
+            case Type.Grass : 
+                return getGrassEffectiveness(pokemon);
+        }
+        return Effectiveness.Normal;
+    }
+
+    private Effectiveness getGrassEffectiveness(Pokemon pokemon) {
+        if (pokemon.primaryType.Equals(Type.Water) || pokemon.secondaryType.Equals(Type.Water)) {
+            return Effectiveness.TwiceWeak;
+        } else {
+            return Effectiveness.Normal;
+        }
+    }
+
+    private Effectiveness getWaterEffectiveness(Pokemon pokemon) {
+        if (pokemon.primaryType.Equals(Type.Fire) || pokemon.secondaryType.Equals(Type.Fire)) {
+            return Effectiveness.TwiceWeak;
+        } else {
+            return Effectiveness.Normal;
+        }
+    }
+
+    private Effectiveness getFireEffectiveness(Pokemon pokemon) {
+        if (pokemon.primaryType.Equals(Type.Grass) || pokemon.secondaryType.Equals(Type.Grass)) {
+            return Effectiveness.TwiceWeak;
+        } else {
+            return Effectiveness.Normal;
+        }
+    }
+
+    private enum Effectiveness {
+        FourWeak, TwiceWeak, Normal, TwiceResistant, FourResistant, Immune, Absorb
+    }
+
     
 }

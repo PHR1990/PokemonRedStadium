@@ -18,8 +18,10 @@ MonoBehaviour:
   defense: 40
   special: 35
   speed: 56
-  level: 0
-  sprite: {fileID: 787844089220149436, guid: e690406b9c10739449ef99f79237b3ff, type: 3}
+  primaryType: 0
+  secondaryType: 1
+  frontSprite: {fileID: 7039797344376859836, guid: e22e69458618ca549b07f628f8861422, type: 3}
+  backSprite: {fileID: 6087932659830700195, guid: e22e69458618ca549b07f628f8861422, type: 3}
   moves:
   - {fileID: 11400000, guid: 79535304aaa03e64ba036684cc166036, type: 2}
   - {fileID: 11400000, guid: 5ff1fb633d5128349b97737328891932, type: 2}

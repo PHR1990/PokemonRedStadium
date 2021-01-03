@@ -153,9 +153,9 @@ public class PokemonManager : MonoBehaviour
 
     private void populateItemPanel() {
         
-        Button potion = Instantiate(cancelButton);
-        potion.gameObject.transform.parent = itemPanel.transform;
-        potion.GetComponentInChildren<Text>().text = "potion x " + potionAmount;
+        //Button potion = Instantiate(cancelButton);
+        //potion.gameObject.transform.parent = itemPanel.transform;
+        //potion.GetComponentInChildren<Text>().text = "potion x " + potionAmount;
 
         /*
         potion.onClick.AddListener(() => { 
@@ -296,6 +296,8 @@ public class PokemonManager : MonoBehaviour
         ownPokemonNameText.text = ownPokemonData.basePokemon.name;
         updateOwnPokemonHpText();
         
+        ownPokemonImage.GetComponent<Image>().sprite = ownPokemonData.basePokemon.backSprite;
+        
     }
 
     private void initiateEnemyPokemonControls() {
@@ -304,7 +306,7 @@ public class PokemonManager : MonoBehaviour
         enemyPokemonSlider.value = enemyPokemonData.currentHp;
 
         enemyPokemonNameText.text = enemyPokemonData.basePokemon.name;
-        
+        enemyPokemonImage.GetComponent<Image>().sprite = enemyPokemonData.basePokemon.frontSprite;
     }
     
     private void updateOwnPokemonHpText() {

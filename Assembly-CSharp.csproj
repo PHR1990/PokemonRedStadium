@@ -55,14 +55,15 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\PokemonBattleController.cs" />
     <Compile Include="Assets\Scripts\Move.cs" />
+    <Compile Include="Assets\Scripts\BattleEvent\MoveEvent.cs" />
     <Compile Include="Assets\Scripts\PokemonManager.cs" />
+    <Compile Include="Assets\Scripts\BattleEvent\BattleEvent.cs" />
     <Compile Include="Assets\Scripts\PokemonData.cs" />
     <Compile Include="Assets\Scripts\Pokemon.cs" />
-    <Compile Include="Assets\Scripts\Effect.cs" />
     <Compile Include="Assets\Scripts\Calculators.cs" />
+    <Compile Include="Assets\Scripts\Effect.cs" />
     <Compile Include="Assets\Scripts\BattleEvent\TextMessageEvent.cs" />
-    <Compile Include="Assets\Scripts\BattleEvent\MoveEvent.cs" />
-    <Compile Include="Assets\Scripts\BattleEvent\BattleEvent.cs" />
+    <Compile Include="Assets\Scripts\Type.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

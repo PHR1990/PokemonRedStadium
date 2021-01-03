@@ -13,10 +13,12 @@ public class Pokemon : ScriptableObject
     public int defense;
     public int special;
     public int speed;
+    
+    public Type primaryType;
+    public Type secondaryType;
 
-    public int level;
-
-    public Sprite sprite;
+    public Sprite frontSprite;
+    public Sprite backSprite;
 
     public List<Move> moves;
 }

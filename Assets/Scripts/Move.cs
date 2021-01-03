@@ -14,12 +14,7 @@ public class Move : ScriptableObject
     public int accuracy;
 
     public Type type; 
-    [Serializable]
-    public enum Type {
-
-        Normal, Flying
-    }
-
+    
     public Effect effect;
     // list effects
 }
