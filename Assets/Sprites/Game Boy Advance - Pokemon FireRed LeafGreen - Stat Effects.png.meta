@@ -5,6 +5,24 @@ TextureImporter:
   - first:
       213: -7503891358533879006
     second: Game Boy Advance - Pokemon FireRed LeafGreen - Stat Effects_0
+  - first:
+      213: 795007379393814735
+    second: Game Boy Advance - Pokemon FireRed LeafGreen - Stat Effects_1
+  - first:
+      213: -8028932151878850751
+    second: Game Boy Advance - Pokemon FireRed LeafGreen - Stat Effects_2
+  - first:
+      213: -4166119832810511561
+    second: Game Boy Advance - Pokemon FireRed LeafGreen - Stat Effects_3
+  - first:
+      213: -1658103792187805609
+    second: Game Boy Advance - Pokemon FireRed LeafGreen - Stat Effects_4
+  - first:
+      213: -6131526445350732210
+    second: Game Boy Advance - Pokemon FireRed LeafGreen - Stat Effects_5
+  - first:
+      213: -4790022685739209538
+    second: Game Boy Advance - Pokemon FireRed LeafGreen - Stat Effects_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -97,10 +115,10 @@ TextureImporter:
       name: Game Boy Advance - Pokemon FireRed LeafGreen - Stat Effects_0
       rect:
         serializedVersion: 2
-        x: 502
-        y: 873
-        width: 255
-        height: 253
+        x: 516
+        y: 886
+        width: 224
+        height: 229
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -110,6 +128,132 @@ TextureImporter:
       bones: []
       spriteID: 22bf6751192dcd790800000000000000
       internalID: -7503891358533879006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - Pokemon FireRed LeafGreen - Stat Effects_1
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 591
+        width: 253
+        height: 253
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc0259adffe680b00800000000000000
+      internalID: 795007379393814735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - Pokemon FireRed LeafGreen - Stat Effects_2
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 592
+        width: 249
+        height: 252
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1476c893fb0839090800000000000000
+      internalID: -8028932151878850751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - Pokemon FireRed LeafGreen - Stat Effects_3
+      rect:
+        serializedVersion: 2
+        x: 508
+        y: 309
+        width: 245
+        height: 247
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 733ae99c518fe26c0800000000000000
+      internalID: -4166119832810511561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - Pokemon FireRed LeafGreen - Stat Effects_4
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 313
+        width: 243
+        height: 243
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 750fae1d26b3df8e0800000000000000
+      internalID: -1658103792187805609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - Pokemon FireRed LeafGreen - Stat Effects_5
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 599
+        width: 244
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4eb4f52f2178eaa0800000000000000
+      internalID: -6131526445350732210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - Pokemon FireRed LeafGreen - Stat Effects_6
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 881
+        width: 239
+        height: 241
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebca376febb668db0800000000000000
+      internalID: -4790022685739209538
       vertices: []
       indices: 
       edges: []

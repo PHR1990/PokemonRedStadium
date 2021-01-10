@@ -343,6 +343,5 @@ public class PokemonManager : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
         }
     }
-
     
 }
