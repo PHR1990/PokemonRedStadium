@@ -48,12 +48,15 @@ public class PokemonManager : MonoBehaviour
     public Text messageText;
     public Image ownPokemonSliderFill;
     public Image enemyPokemonSliderFill;
+    
 
     private int charactersPerTurn = 10;
 
     private PokemonBattleController pokemonBattleController;
     
     private bool isReady;
+
+    private bool startIsDone = false;
     // Start is called before the first frame update
 
     private Queue<BattleEvent> battleEventQueue;
@@ -87,6 +90,8 @@ public class PokemonManager : MonoBehaviour
         pokemonBattleController.triggerTurnsWereExecutedDelegate+=moveStateToAwaitingAction;
         
         pokemonBattleController.emitEventDelegate+=enqueueEvent;
+
+        startIsDone = true;
     }
 
     private void initiateQueueSystem() {
@@ -338,6 +343,6 @@ public class PokemonManager : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
         }
     }
-    
 
+    
 }

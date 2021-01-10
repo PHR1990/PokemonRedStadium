@@ -3529,7 +3529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 83e27d87859ad3f4a8b90c57593f6714, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -3537,7 +3537,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -3200246201324598416, guid: e22e69458618ca549b07f628f8861422, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3812,7 +3812,7 @@ MonoBehaviour:
     accuracyStatisticsChange: 0
     evasionStatisticsChange: 0
     attackStatisticsChange: 0
-    defenseStatisticsChange: 0
+    defenseStatisticsChange: -228
   enemyPokemonSlider: {fileID: 781696955}
   enemyPokemonNameText: {fileID: 197011872}
   enemyPokemonLevelText: {fileID: 1890380934}

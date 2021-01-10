@@ -38,6 +38,12 @@ TextureImporter:
   - first:
       213: 8893657720034132540
     second: allPokemon3rdGenTransparent_11
+  - first:
+      213: -2361076952491733455
+    second: allPokemon3rdGenTransparent_12
+  - first:
+      213: -7718111755539189250
+    second: allPokemon3rdGenTransparent_13
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -261,7 +267,7 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -282,7 +288,7 @@ TextureImporter:
         width: 64
         height: 33
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -303,7 +309,7 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -324,7 +330,7 @@ TextureImporter:
         width: 64
         height: 54
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -345,7 +351,7 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -366,7 +372,7 @@ TextureImporter:
         width: 64
         height: 49
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -374,6 +380,122 @@ TextureImporter:
       bones: []
       spriteID: c328b84639e9c6b70800000000000000
       internalID: 8893657720034132540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: allPokemon3rdGenTransparent_12
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 1566
+        width: 40
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 14, y: -14}
+        - {x: 14, y: -12}
+        - {x: 15, y: -11}
+        - {x: 17, y: -11}
+        - {x: 20, y: -8}
+        - {x: 20, y: -1}
+        - {x: 18, y: 1}
+        - {x: 12, y: 1}
+        - {x: 10, y: 0}
+        - {x: 8, y: 3}
+        - {x: 4, y: 5}
+        - {x: 3, y: 8}
+        - {x: 5, y: 10}
+        - {x: 5, y: 12}
+        - {x: 3, y: 13}
+        - {x: 0, y: 16}
+        - {x: -6, y: 18}
+        - {x: -9, y: 15}
+        - {x: -11, y: 15}
+        - {x: -14, y: 13}
+        - {x: -16, y: 8}
+        - {x: -15, y: 7}
+        - {x: -17, y: 5}
+        - {x: -17, y: 3}
+        - {x: -13, y: -1}
+        - {x: -15, y: -5}
+        - {x: -15, y: -9}
+        - {x: -10, y: -13}
+        - {x: -13, y: -16}
+        - {x: -13, y: -18}
+        - {x: -11, y: -20}
+        - {x: -5, y: -21}
+        - {x: 5, y: -21}
+        - {x: 8, y: -19}
+        - {x: 9, y: -17}
+        - {x: 11, y: -17}
+      physicsShape: []
+      tessellationDetail: 1
+      bones: []
+      spriteID: 13e4e5f6505cb3fd0800000000000000
+      internalID: -2361076952491733455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: allPokemon3rdGenTransparent_13
+      rect:
+        serializedVersion: 2
+        x: 1051
+        y: 1389
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 14, y: -15}
+        - {x: 14, y: -13}
+        - {x: 12, y: -11}
+        - {x: 16, y: -8}
+        - {x: 17, y: -5}
+        - {x: 19, y: -2}
+        - {x: 19, y: 0}
+        - {x: 18, y: 1}
+        - {x: 18, y: 4}
+        - {x: 16, y: 7}
+        - {x: 17, y: 8}
+        - {x: 17, y: 15}
+        - {x: 14, y: 19}
+        - {x: 11, y: 19}
+        - {x: 6, y: 16}
+        - {x: 4, y: 16}
+        - {x: 3, y: 17}
+        - {x: -2, y: 17}
+        - {x: -3, y: 16}
+        - {x: -6, y: 16}
+        - {x: -9, y: 18}
+        - {x: -11, y: 18}
+        - {x: -14, y: 15}
+        - {x: -14, y: 10}
+        - {x: -13, y: 9}
+        - {x: -13, y: 7}
+        - {x: -14, y: 6}
+        - {x: -14, y: 4}
+        - {x: -18, y: 0}
+        - {x: -18, y: -2}
+        - {x: -8, y: -12}
+        - {x: -9, y: -13}
+        - {x: -9, y: -15}
+        - {x: -6, y: -18}
+        - {x: -2, y: -18}
+        - {x: 3, y: -15}
+        - {x: 7, y: -18}
+        - {x: 11, y: -18}
+      physicsShape: []
+      tessellationDetail: 1
+      bones: []
+      spriteID: ef1f15a2042c3e490800000000000000
+      internalID: -7718111755539189250
       vertices: []
       indices: 
       edges: []
