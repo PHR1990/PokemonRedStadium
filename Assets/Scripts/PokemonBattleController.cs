@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEditor;
 
 /**
  * handles only data changes, and business logic
@@ -42,6 +41,9 @@ public class PokemonBattleController
     
     private void executeMove(PokemonData attackingPokemon, PokemonData defendingPokemon, Move move) {
         
+        // TODO need to implement sometihng else for selfdestruct
+        
+
         if (!willMoveHit(attackingPokemon, defendingPokemon, move)) {
             if (attackingPokemon.Equals(ownPokemonData)) {
             emitEventDelegate(
@@ -75,6 +77,11 @@ public class PokemonBattleController
                 emitEventDelegate(
                     new TextMessageEvent("It's super effective!"));
             }
+
+            if (defendingPokemon.currentHp < 1) {
+                faintPokemon(defendingPokemon);
+            }
+
             // TODO separete effectiveness in a separate class
             
         }
@@ -152,11 +159,18 @@ public class PokemonBattleController
             emitEventDelegate(new TextMessageEvent(ownPokemonData.basePokemon.name.ToUpper() + " used " + ownPokemonData.basePokemon.moves[move].name.ToUpper() ));
             executeMove(ownPokemonData, enemyPokemonData, ownPokemonData.basePokemon.moves[move]);
             
-            executeEnemyTurn();
+            if (enemyPokemonData.currentHp > 0) {
+                executeEnemyTurn();
+            }
+            
         } else {
             executeEnemyTurn();
             emitEventDelegate(new TextMessageEvent(ownPokemonData.basePokemon.name.ToUpper() + " used " + ownPokemonData.basePokemon.moves[move].name.ToUpper() ));
-            executeMove(ownPokemonData, enemyPokemonData, ownPokemonData.basePokemon.moves[move]);
+
+            if (ownPokemonData.currentHp > 0) {
+                executeMove(ownPokemonData, enemyPokemonData, ownPokemonData.basePokemon.moves[move]);
+            }
+            
         }
         
         emitEventDelegate(new TextMessageEvent("What will " + ownPokemonData.basePokemon.name.ToUpper() + " do?"));
@@ -205,5 +219,13 @@ public class PokemonBattleController
         FourWeak, TwiceWeak, Normal, TwiceResistant, FourResistant, Immune, Absorb
     }
 
-    
+    private void faintPokemon(PokemonData defendingPokemon) {
+        emitEventDelegate(
+                    new TextMessageEvent(defendingPokemon.basePokemon.name + " fainted!"));
+
+        emitEventDelegate(new FaintEvent(defendingPokemon));
+
+        defendingPokemon = null;
+    }
+
 }

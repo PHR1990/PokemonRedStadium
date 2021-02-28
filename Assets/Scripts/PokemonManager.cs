@@ -16,6 +16,8 @@ public class PokemonManager : MonoBehaviour
     public Text ownPokemonHpText;
     public Image ownPokemonImage;
 
+    public List<Image> ownPokemonTeamPokeballs;
+
     [Header("Enemy Pokemon Binders")]
     public PokemonData enemyPokemonData;
     public Slider enemyPokemonSlider;
@@ -23,6 +25,7 @@ public class PokemonManager : MonoBehaviour
     public Text enemyPokemonLevelText;
     //public Text enemyPokemonHpText;
     public Image enemyPokemonImage;
+    public List<Image> enemyPokemonTeamPokeballs;
 
     [Header("Moves Binders")]
     public Button moveOneBtn;
@@ -48,8 +51,14 @@ public class PokemonManager : MonoBehaviour
     public Text messageText;
     public Image ownPokemonSliderFill;
     public Image enemyPokemonSliderFill;
-    
 
+    public GameObject menu;
+
+    public Sprite pokeballEmpty;
+    public Sprite pokeballFaint;
+    public Sprite pokeballStatus;
+    public Sprite pokeballFull;
+    
     private int charactersPerTurn = 10;
 
     private PokemonBattleController pokemonBattleController;
@@ -57,6 +66,8 @@ public class PokemonManager : MonoBehaviour
     private bool isReady;
 
     private bool startIsDone = false;
+
+
     // Start is called before the first frame update
 
     private Queue<BattleEvent> battleEventQueue;
@@ -66,8 +77,7 @@ public class PokemonManager : MonoBehaviour
         
         ownPokemonData.currentHp = ownPokemonData.getHpStat();
         enemyPokemonData.currentHp = enemyPokemonData.getHpStat();
-
-
+        
         initiateOwnPokemonControls();
         initiateEnemyPokemonControls();
 
@@ -94,6 +104,22 @@ public class PokemonManager : MonoBehaviour
         startIsDone = true;
     }
 
+    private void bindTeamsToPokeball() {
+        
+        for (int x = 0; x < ownPokemonTeamPokeballs.Count; x++) {
+
+        }
+        
+    }
+
+    void Update() {
+
+        if (Input.GetKeyDown(KeyCode.Escape) ) {
+            menu.gameObject.SetActive(!(menu.gameObject.activeInHierarchy));
+            
+        }
+    }
+
     private void initiateQueueSystem() {
         isReady = true;
         battleEventQueue = new Queue<BattleEvent>();
@@ -118,18 +144,7 @@ public class PokemonManager : MonoBehaviour
         movesPanel.SetActive(false);
         actionPanel.SetActive(true);
     }
-
-    /*private void moveStateToAwaitingAction(string msg) {
-        //messageText.gameObject.SetActive(true);
-        StartCoroutine(displayMessage(msg));
-        
-        itemPanel.SetActive(false);
-        movesCancelPanel.SetActive(false);
-        movesPanel.SetActive(false);
-        actionPanel.SetActive(true);
-
-    }*/
-
+    
     private IEnumerator displayMessage(string msg) {
         
         isReady = false;
@@ -235,8 +250,8 @@ public class PokemonManager : MonoBehaviour
     }
     
     private void updateHealthBarColors() {
-        enemyPokemonSliderFill.color = decideTargetColor(enemyPokemonData.getHpStat(), enemyPokemonData.currentHp);
-        ownPokemonSliderFill.color = decideTargetColor(ownPokemonData.getHpStat(), ownPokemonData.currentHp);
+        if (enemyPokemonData != null) enemyPokemonSliderFill.color = decideTargetColor(enemyPokemonData.getHpStat(), enemyPokemonData.currentHp);
+        if (ownPokemonData!= null) ownPokemonSliderFill.color = decideTargetColor(ownPokemonData.getHpStat(), ownPokemonData.currentHp);
     }
 
     private Color decideTargetColor(int maxHp, int currentHp) {
@@ -302,7 +317,6 @@ public class PokemonManager : MonoBehaviour
         updateOwnPokemonHpText();
         
         ownPokemonImage.GetComponent<Image>().sprite = ownPokemonData.basePokemon.backSprite;
-        
     }
 
     private void initiateEnemyPokemonControls() {
@@ -337,11 +351,48 @@ public class PokemonManager : MonoBehaviour
                 } else if (battleEvent.GetType() == typeof(MoveEvent)) {
                     
                     StartCoroutine(slowlyReduceHp(((MoveEvent)battleEvent).pokemon));
+
+                } else if (battleEvent.GetType() == typeof(FaintEvent)) {
+                    
+                    StartCoroutine(faintPokemon(((FaintEvent)battleEvent).faintTarget));
                 }
 
             } 
             yield return new WaitForSeconds(0.5f);
         }
+    }
+
+    IEnumerator faintPokemon(PokemonData targetPokemon) {
+        
+        isReady = false;
+
+        if (ownPokemonData == targetPokemon) {
+            faintOwnPokemon();
+        } else {
+            faintEnemyPokemon();
+        }
+        isReady = true;
+
+        yield return new WaitForSeconds(0.5f);
+    }
+
+    private void faintOwnPokemon() {
+        ownPokemonSlider.gameObject.SetActive(false);
+
+        ownPokemonNameText.gameObject.SetActive(false);
+        ownPokemonHpText.gameObject.SetActive(false);
+        ownPokemonImage.gameObject.SetActive(false);
+        ownPokemonData = null;
+        
+    }
+
+    private void faintEnemyPokemon() {
+        enemyPokemonSlider.gameObject.SetActive(false);
+
+        enemyPokemonNameText.gameObject.SetActive(false);
+        enemyPokemonLevelText.gameObject.SetActive(false);
+        enemyPokemonImage.gameObject.SetActive(false);
+        enemyPokemonData = null;
     }
     
 }
