@@ -228,4 +228,12 @@ public class PokemonBattleController
         defendingPokemon = null;
     }
 
+    public void switchEnemyPokemon() {
+    }
+
+    public void switchOwnPokemon(PokemonData pokemonData) {
+
+        ownPokemonData = pokemonData;
+    }
+
 }

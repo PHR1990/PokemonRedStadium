@@ -9,7 +9,7 @@ public class PokemonManager : MonoBehaviour
     public int potionAmount = 5;
 
     [Header("Own Pokemon Binders")]
-    public PokemonData ownPokemonData;
+    public Team ownTeam;
     public Slider ownPokemonSlider;
     public Text ownPokemonNameText;
     public Text ownPokemonLevelText;
@@ -19,7 +19,7 @@ public class PokemonManager : MonoBehaviour
     public List<Image> ownPokemonTeamPokeballs;
 
     [Header("Enemy Pokemon Binders")]
-    public PokemonData enemyPokemonData;
+    public Team enemyTeam;
     public Slider enemyPokemonSlider;
     public Text enemyPokemonNameText;
     public Text enemyPokemonLevelText;
@@ -43,9 +43,16 @@ public class PokemonManager : MonoBehaviour
     [Header("Action Panel Binders")]
     public Button fightButton;
     public Button bagButton;
+    public Button pokemonButton;
+    public Button runButton;
 
     [Header("Item Binders")]
     public Button cancelButton;
+
+    [Header("Pokemon Switch Menu")]
+    public List<Button> pokemonSwitch; 
+    public GameObject pokemonSwitchMenu;
+    public Button cancelPokemonSwitchButton;
 
     [Header("Other Controls")]
     public Text messageText;
@@ -67,16 +74,62 @@ public class PokemonManager : MonoBehaviour
 
     private bool startIsDone = false;
 
+    private EventQueueSystem eventQueueSystem;
 
     // Start is called before the first frame update
 
+    private PokemonData getActiveEnemyPokemon() {
+        return enemyTeam.pokemonData[0];
+    }
+
+    private PokemonData getActiveOwnPokemon() {
+        return ownTeam.pokemonData[0];
+    }
+
     private Queue<BattleEvent> battleEventQueue;
+
+    private void healAllPokemon() {
+
+        for (int x = 0; x < ownTeam.pokemonData.Count; x++) {
+            ownTeam.pokemonData[x].currentHp = ownTeam.pokemonData[x].getHpStat();
+            ownTeam.pokemonData[x].accuracyStatisticsChange = 0;
+            ownTeam.pokemonData[x].attackStatisticsChange = 0;
+            ownTeam.pokemonData[x].defenseStatisticsChange = 0;
+            ownTeam.pokemonData[x].evasionStatisticsChange = 0;
+        }
+
+        for (int x = 0; x < enemyTeam.pokemonData.Count; x++) {
+            enemyTeam.pokemonData[x].currentHp = enemyTeam.pokemonData[x].getHpStat();
+            enemyTeam.pokemonData[x].accuracyStatisticsChange = 0;
+            enemyTeam.pokemonData[x].attackStatisticsChange = 0;
+            enemyTeam.pokemonData[x].defenseStatisticsChange = 0;
+            enemyTeam.pokemonData[x].evasionStatisticsChange = 0;
+        }
+
+    }
+
     void Start()
     {
+        cancelMovesBtn.onClick.AddListener(() => {
+            enqueueEvent(new TextMessageEvent(getActiveEnemyPokemon().basePokemon.name + " wants to battle!"));
+            moveStateToAwaitingAction();
+        });
+
+        pokemonButton.onClick.AddListener(() => {
+            pokemonSwitchMenu.SetActive(true);
+        });
+
+        runButton.onClick.AddListener(() => {
+            restartMatch();
+        });
+
+        cancelPokemonSwitchButton.onClick.AddListener(() => {
+            pokemonSwitchMenu.SetActive(false);
+        });
+
         initiateQueueSystem();
         
-        ownPokemonData.currentHp = ownPokemonData.getHpStat();
-        enemyPokemonData.currentHp = enemyPokemonData.getHpStat();
+        healAllPokemon();
         
         initiateOwnPokemonControls();
         initiateEnemyPokemonControls();
@@ -87,27 +140,108 @@ public class PokemonManager : MonoBehaviour
    
         populateItemPanel();
 
-        cancelMovesBtn.onClick.AddListener(() => {
-            enqueueEvent(new TextMessageEvent(enemyPokemonData.basePokemon.name + " wants to battle!"));
-            moveStateToAwaitingAction();
-        });
-
-        enqueueEvent(new TextMessageEvent(enemyPokemonData.basePokemon.name + " wants to battle!"));
+        enqueueEvent(new TextMessageEvent(getActiveEnemyPokemon().basePokemon.name + " wants to battle!"));
         moveStateToAwaitingAction();
 
-        pokemonBattleController = new PokemonBattleController(ownPokemonData, enemyPokemonData);
+        pokemonBattleController = new PokemonBattleController(getActiveOwnPokemon(), getActiveEnemyPokemon());
         
         pokemonBattleController.triggerTurnsWereExecutedDelegate+=moveStateToAwaitingAction;
         
         pokemonBattleController.emitEventDelegate+=enqueueEvent;
 
+        bindTeamsToPokeball();
+
+        bindPokemonSwitchToTeam();
+
         startIsDone = true;
+
+        eventQueueSystem = new EventQueueSystem();
+    }
+    
+    private void restartMatch() {
+        
+        startIsDone = false;
+        healAllPokemon();
+        initiateQueueSystem();
+        
+        initiateOwnPokemonControls();
+        initiateEnemyPokemonControls();
+
+        initiateMoveControllers();
+
+        bindActionPanelButtons();
+
+        enqueueEvent(new TextMessageEvent(getActiveEnemyPokemon().basePokemon.name + " wants to battle!"));
+        moveStateToAwaitingAction();
+
+        pokemonBattleController = new PokemonBattleController(getActiveOwnPokemon(), getActiveEnemyPokemon());
+        
+        pokemonBattleController.triggerTurnsWereExecutedDelegate+=moveStateToAwaitingAction;
+        
+        pokemonBattleController.emitEventDelegate+=enqueueEvent;
+
+        bindTeamsToPokeball();
+
+        bindPokemonSwitchToTeam();
+
+        updateHealthBarColors();
+
+        startIsDone = true;
+    }
+
+    private void bindPokemonSwitchToTeam() {
+        for (int x =0; x < pokemonSwitch.Count; x++) {
+            pokemonSwitch[x].gameObject.SetActive(false);
+        }
+        
+        for (int x = 0; x < ownTeam.pokemonData.Count; x++) {
+            if (ownTeam.pokemonData[x] != null) {
+                pokemonSwitch[x].GetComponent<Image>().sprite = ownTeam.pokemonData[x].basePokemon.frontSprite;
+                pokemonSwitch[x].gameObject.SetActive(true);
+
+                var targetIndex = x;
+                pokemonSwitch[x].onClick.AddListener(() => { 
+
+                    Debug.Log("Current" +targetIndex);
+                    switchActiveOwnPokemon(targetIndex);
+                });
+            }
+        }
+    }
+
+    private void switchActiveOwnPokemon(int targetIndex) {
+
+        PokemonData newlyActive = ownTeam.pokemonData[targetIndex];
+        PokemonData currentlyActive = ownTeam.pokemonData[0];
+
+        ownTeam.pokemonData[0] = newlyActive;
+        ownTeam.pokemonData[targetIndex] = currentlyActive;
+
+        pokemonBattleController.switchOwnPokemon(ownTeam.pokemonData[0]);
+
+        healAllPokemon();
+        updateHealthBarColors();
+        updateOwnPokemonHpText();
+        
+        initiateOwnPokemonControls();
+        initiateEnemyPokemonControls();
+
+        initiateMoveControllers();
+        
     }
 
     private void bindTeamsToPokeball() {
         
-        for (int x = 0; x < ownPokemonTeamPokeballs.Count; x++) {
+        for (int x = 0; x < ownTeam.pokemonData.Count; x++) {
+            if (ownTeam.pokemonData[x] != null) {
+                ownPokemonTeamPokeballs[x].sprite = pokeballFull;
+            }
+        }
 
+        for (int x = 0; x < enemyTeam.pokemonData.Count; x++) {
+            if (enemyTeam.pokemonData[x] != null) {
+                enemyPokemonTeamPokeballs[x].sprite = pokeballFull;
+            }
         }
         
     }
@@ -116,7 +250,6 @@ public class PokemonManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape) ) {
             menu.gameObject.SetActive(!(menu.gameObject.activeInHierarchy));
-            
         }
     }
 
@@ -132,8 +265,6 @@ public class PokemonManager : MonoBehaviour
     }
 
     private void showMessage(string msg) {
-        
-        
         StartCoroutine(displayMessage(msg));
     }
 
@@ -211,20 +342,20 @@ public class PokemonManager : MonoBehaviour
 
     private void initiateMoveControllers() {
 
-        if (ownPokemonData.basePokemon.moves.Count > 0) {
-            moveOneBtn.GetComponentInChildren<Text>().text = ownPokemonData.basePokemon.moves[0].name.ToUpper();
+        if (getActiveOwnPokemon().basePokemon.moves.Count > 0) {
+            moveOneBtn.GetComponentInChildren<Text>().text = getActiveOwnPokemon().basePokemon.moves[0].name.ToUpper();
             moveOneBtn.onClick.AddListener(() => pokemonBattleController.makeMove(0));
         }
-        if (ownPokemonData.basePokemon.moves.Count > 1) {
-            moveTwoBtn.GetComponentInChildren<Text>().text = ownPokemonData.basePokemon.moves[1].name.ToUpper();
+        if (getActiveOwnPokemon().basePokemon.moves.Count > 1) {
+            moveTwoBtn.GetComponentInChildren<Text>().text = getActiveOwnPokemon().basePokemon.moves[1].name.ToUpper();
             moveTwoBtn.onClick.AddListener(() => pokemonBattleController.makeMove(1));
         }
-        if (ownPokemonData.basePokemon.moves.Count > 2) {
-            moveThreeBtn.GetComponentInChildren<Text>().text = ownPokemonData.basePokemon.moves[2].name.ToUpper();
+        if (getActiveOwnPokemon().basePokemon.moves.Count > 2) {
+            moveThreeBtn.GetComponentInChildren<Text>().text = getActiveOwnPokemon().basePokemon.moves[2].name.ToUpper();
             moveThreeBtn.onClick.AddListener(() => pokemonBattleController.makeMove(2));
         }
-        if (ownPokemonData.basePokemon.moves.Count > 3) {
-            moveFourBtn.GetComponentInChildren<Text>().text = ownPokemonData.basePokemon.moves[3].name.ToUpper();
+        if (getActiveOwnPokemon().basePokemon.moves.Count > 3) {
+            moveFourBtn.GetComponentInChildren<Text>().text = getActiveOwnPokemon().basePokemon.moves[3].name.ToUpper();
             moveFourBtn.onClick.AddListener(() => pokemonBattleController.makeMove(3));
         }
         
@@ -232,11 +363,11 @@ public class PokemonManager : MonoBehaviour
     
     private void pokemonWasDamaged() {
         disableAllPanelsExceptText();
-        if (enemyPokemonSlider.value > enemyPokemonData.currentHp) {
-            StartCoroutine(slowlyReduceHp(enemyPokemonData));
+        if (enemyPokemonSlider.value > getActiveEnemyPokemon().currentHp) {
+            StartCoroutine(slowlyReduceHp(getActiveEnemyPokemon()));
         }
-        if (ownPokemonSlider.value > ownPokemonData.currentHp) {
-            StartCoroutine(slowlyReduceHp(ownPokemonData));
+        if (ownPokemonSlider.value > getActiveOwnPokemon().currentHp) {
+            StartCoroutine(slowlyReduceHp(getActiveOwnPokemon()));
         }
         
     }
@@ -250,8 +381,8 @@ public class PokemonManager : MonoBehaviour
     }
     
     private void updateHealthBarColors() {
-        if (enemyPokemonData != null) enemyPokemonSliderFill.color = decideTargetColor(enemyPokemonData.getHpStat(), enemyPokemonData.currentHp);
-        if (ownPokemonData!= null) ownPokemonSliderFill.color = decideTargetColor(ownPokemonData.getHpStat(), ownPokemonData.currentHp);
+        if (getActiveEnemyPokemon() != null) enemyPokemonSliderFill.color = decideTargetColor(getActiveEnemyPokemon().getHpStat(), getActiveEnemyPokemon().currentHp);
+        if (getActiveOwnPokemon() != null) ownPokemonSliderFill.color = decideTargetColor(getActiveOwnPokemon().getHpStat(), getActiveOwnPokemon().currentHp);
     }
 
     private Color decideTargetColor(int maxHp, int currentHp) {
@@ -278,15 +409,15 @@ public class PokemonManager : MonoBehaviour
         Slider targetPokemonSlider;
         PokemonData attackingPokemon;
         bool updateText = false;
-        if (defendingPokemon.Equals(ownPokemonData)) {
+        if (defendingPokemon.Equals(getActiveOwnPokemon())) {
             updateText=true;
             targetPokemon = ownPokemonImage;
             targetPokemonSlider = ownPokemonSlider;
-            attackingPokemon = enemyPokemonData;
+            attackingPokemon = getActiveEnemyPokemon();
         } else {
             targetPokemon = enemyPokemonImage;
             targetPokemonSlider = enemyPokemonSlider;
-            attackingPokemon = ownPokemonData;
+            attackingPokemon = getActiveOwnPokemon();
         }
         
         while (targetPokemonSlider.value > 0 
@@ -309,35 +440,41 @@ public class PokemonManager : MonoBehaviour
     }
     
     private void initiateOwnPokemonControls() {
-        ownPokemonSlider.maxValue = ownPokemonData.getHpStat();
+        ownPokemonSlider.maxValue = getActiveOwnPokemon().getHpStat();
         ownPokemonSlider.minValue = 0;
-        ownPokemonSlider.value = ownPokemonData.currentHp;
+        ownPokemonSlider.value = getActiveOwnPokemon().currentHp;
 
-        ownPokemonNameText.text = ownPokemonData.basePokemon.name;
+        ownPokemonNameText.text = getActiveOwnPokemon().basePokemon.name;
         updateOwnPokemonHpText();
         
-        ownPokemonImage.GetComponent<Image>().sprite = ownPokemonData.basePokemon.backSprite;
+        ownPokemonImage.GetComponent<Image>().sprite = getActiveOwnPokemon().basePokemon.backSprite;
+
+        ownPokemonSlider.gameObject.SetActive(true);
+        ownPokemonNameText.gameObject.SetActive(true);
+        ownPokemonImage.gameObject.SetActive(true);
     }
 
     private void initiateEnemyPokemonControls() {
-        enemyPokemonSlider.maxValue = enemyPokemonData.getHpStat();
+        enemyPokemonSlider.maxValue = getActiveEnemyPokemon().getHpStat();
         enemyPokemonSlider.minValue = 0;
-        enemyPokemonSlider.value = enemyPokemonData.currentHp;
+        enemyPokemonSlider.value = getActiveEnemyPokemon().currentHp;
 
-        enemyPokemonNameText.text = enemyPokemonData.basePokemon.name;
-        enemyPokemonImage.GetComponent<Image>().sprite = enemyPokemonData.basePokemon.frontSprite;
+        enemyPokemonNameText.text = getActiveEnemyPokemon().basePokemon.name;
+        enemyPokemonImage.GetComponent<Image>().sprite = getActiveEnemyPokemon().basePokemon.frontSprite;
+
+        enemyPokemonSlider.gameObject.SetActive(true);
+        enemyPokemonNameText.gameObject.SetActive(true);
+        enemyPokemonImage.gameObject.SetActive(true);
     }
     
     private void updateOwnPokemonHpText() {
-        ownPokemonHpText.text = ownPokemonData.currentHp + "/ " + ownPokemonData.getHpStat();
+        ownPokemonHpText.text = getActiveOwnPokemon().currentHp + "/ " + getActiveOwnPokemon().getHpStat();
     }
 
     private void updateOwnPokemonHpText(int targetCurrentHp) {
-        ownPokemonHpText.text = targetCurrentHp + "/ " + ownPokemonData.getHpStat();
+        ownPokemonHpText.text = targetCurrentHp + "/ " + getActiveOwnPokemon().getHpStat();
     }
-
     
-
     private IEnumerator messageProcessor() {
         while (true) {
             if (battleEventQueue.Count > 0 && isReady) {
@@ -366,7 +503,7 @@ public class PokemonManager : MonoBehaviour
         
         isReady = false;
 
-        if (ownPokemonData == targetPokemon) {
+        if (getActiveOwnPokemon() == targetPokemon) {
             faintOwnPokemon();
         } else {
             faintEnemyPokemon();
@@ -382,8 +519,12 @@ public class PokemonManager : MonoBehaviour
         ownPokemonNameText.gameObject.SetActive(false);
         ownPokemonHpText.gameObject.SetActive(false);
         ownPokemonImage.gameObject.SetActive(false);
-        ownPokemonData = null;
-        
+
+        ownPokemonTeamPokeballs[0].sprite = pokeballEmpty;
+
+        switchActiveOwnPokemon(1);
+
+        //getActiveOwnPokemon() = null;   
     }
 
     private void faintEnemyPokemon() {
@@ -392,7 +533,9 @@ public class PokemonManager : MonoBehaviour
         enemyPokemonNameText.gameObject.SetActive(false);
         enemyPokemonLevelText.gameObject.SetActive(false);
         enemyPokemonImage.gameObject.SetActive(false);
-        enemyPokemonData = null;
+
+        enemyPokemonTeamPokeballs[0].sprite = pokeballFaint;
+        //enemyPokemonData = null;
     }
     
 }
