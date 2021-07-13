@@ -85,8 +85,7 @@ public class PokemonManager : MonoBehaviour
     private PokemonData getActiveOwnPokemon() {
         return ownTeam.pokemonData[0];
     }
-
-    private Queue<BattleEvent> battleEventQueue;
+    
 
     private void healAllPokemon() {
 
@@ -110,8 +109,11 @@ public class PokemonManager : MonoBehaviour
 
     void Start()
     {
+        eventQueueSystem = gameObject.AddComponent<EventQueueSystem>();
+        eventQueueSystem.pokemonManager = this;
+
         cancelMovesBtn.onClick.AddListener(() => {
-            enqueueEvent(new TextMessageEvent(getActiveEnemyPokemon().basePokemon.name + " wants to battle!"));
+            eventQueueSystem.enqueueEvent(new TextMessageEvent(getActiveEnemyPokemon().basePokemon.name + " wants to battle!"));
             moveStateToAwaitingAction();
         });
 
@@ -127,7 +129,7 @@ public class PokemonManager : MonoBehaviour
             pokemonSwitchMenu.SetActive(false);
         });
 
-        initiateQueueSystem();
+        eventQueueSystem.initiateQueueSystem();
         
         healAllPokemon();
         
@@ -140,14 +142,14 @@ public class PokemonManager : MonoBehaviour
    
         populateItemPanel();
 
-        enqueueEvent(new TextMessageEvent(getActiveEnemyPokemon().basePokemon.name + " wants to battle!"));
+        eventQueueSystem.enqueueEvent(new TextMessageEvent(getActiveEnemyPokemon().basePokemon.name + " wants to battle!"));
         moveStateToAwaitingAction();
 
         pokemonBattleController = new PokemonBattleController(getActiveOwnPokemon(), getActiveEnemyPokemon());
         
         pokemonBattleController.triggerTurnsWereExecutedDelegate+=moveStateToAwaitingAction;
         
-        pokemonBattleController.emitEventDelegate+=enqueueEvent;
+        pokemonBattleController.emitEventDelegate+=eventQueueSystem.enqueueEvent;
 
         bindTeamsToPokeball();
 
@@ -155,14 +157,14 @@ public class PokemonManager : MonoBehaviour
 
         startIsDone = true;
 
-        eventQueueSystem = new EventQueueSystem();
+        
     }
     
     private void restartMatch() {
         
         startIsDone = false;
         healAllPokemon();
-        initiateQueueSystem();
+        eventQueueSystem.initiateQueueSystem();
         
         initiateOwnPokemonControls();
         initiateEnemyPokemonControls();
@@ -171,14 +173,14 @@ public class PokemonManager : MonoBehaviour
 
         bindActionPanelButtons();
 
-        enqueueEvent(new TextMessageEvent(getActiveEnemyPokemon().basePokemon.name + " wants to battle!"));
+        eventQueueSystem.enqueueEvent(new TextMessageEvent(getActiveEnemyPokemon().basePokemon.name + " wants to battle!"));
         moveStateToAwaitingAction();
 
         pokemonBattleController = new PokemonBattleController(getActiveOwnPokemon(), getActiveEnemyPokemon());
         
         pokemonBattleController.triggerTurnsWereExecutedDelegate+=moveStateToAwaitingAction;
         
-        pokemonBattleController.emitEventDelegate+=enqueueEvent;
+        pokemonBattleController.emitEventDelegate+=eventQueueSystem.enqueueEvent;
 
         bindTeamsToPokeball();
 
@@ -253,20 +255,11 @@ public class PokemonManager : MonoBehaviour
         }
     }
 
-    private void initiateQueueSystem() {
-        isReady = true;
-        battleEventQueue = new Queue<BattleEvent>();
-        StartCoroutine(messageProcessor());
-    }
+    
 
-    private void enqueueEvent(BattleEvent battleEvent) {
-        
-        battleEventQueue.Enqueue(battleEvent);
-    }
+    
 
-    private void showMessage(string msg) {
-        StartCoroutine(displayMessage(msg));
-    }
+    
 
     private void moveStateToAwaitingAction() {
         isReady = true;
@@ -276,25 +269,7 @@ public class PokemonManager : MonoBehaviour
         actionPanel.SetActive(true);
     }
     
-    private IEnumerator displayMessage(string msg) {
-        
-        isReady = false;
-        messageText.gameObject.SetActive(true);
-        int currentSubstringIndex = 0;
-        string currentSubstring = "";
-
-        while (!currentSubstring.Equals(msg)) {
-            currentSubstring+= msg.Substring(currentSubstringIndex,  1);
-            currentSubstringIndex++;
-            messageText.text = currentSubstring;
-            yield return new WaitForSeconds(0.01f);
-        }
-        
-        yield return new WaitForSeconds(0.5f);
-
-        isReady = true;
-        
-    }
+    
     
     private void bindActionPanelButtons() {
         fightButton.onClick.AddListener(fightButtonClicked);
@@ -401,7 +376,7 @@ public class PokemonManager : MonoBehaviour
 
     }
     
-    IEnumerator slowlyReduceHp(PokemonData defendingPokemon) {
+    public IEnumerator slowlyReduceHp(PokemonData defendingPokemon) {
         
         isReady = false;
 
@@ -475,45 +450,11 @@ public class PokemonManager : MonoBehaviour
         ownPokemonHpText.text = targetCurrentHp + "/ " + getActiveOwnPokemon().getHpStat();
     }
     
-    private IEnumerator messageProcessor() {
-        while (true) {
-            if (battleEventQueue.Count > 0 && isReady) {
-                isReady = false;
-                BattleEvent battleEvent = battleEventQueue.Dequeue();
+    
 
-                if (battleEvent.GetType() == typeof(TextMessageEvent)) {
-                    
-                    StartCoroutine(displayMessage(((TextMessageEvent)battleEvent).textMessage));
+    
 
-                } else if (battleEvent.GetType() == typeof(MoveEvent)) {
-                    
-                    StartCoroutine(slowlyReduceHp(((MoveEvent)battleEvent).pokemon));
-
-                } else if (battleEvent.GetType() == typeof(FaintEvent)) {
-                    
-                    StartCoroutine(faintPokemon(((FaintEvent)battleEvent).faintTarget));
-                }
-
-            } 
-            yield return new WaitForSeconds(0.5f);
-        }
-    }
-
-    IEnumerator faintPokemon(PokemonData targetPokemon) {
-        
-        isReady = false;
-
-        if (getActiveOwnPokemon() == targetPokemon) {
-            faintOwnPokemon();
-        } else {
-            faintEnemyPokemon();
-        }
-        isReady = true;
-
-        yield return new WaitForSeconds(0.5f);
-    }
-
-    private void faintOwnPokemon() {
+    public void faintOwnPokemon() {
         ownPokemonSlider.gameObject.SetActive(false);
 
         ownPokemonNameText.gameObject.SetActive(false);
@@ -527,7 +468,7 @@ public class PokemonManager : MonoBehaviour
         //getActiveOwnPokemon() = null;   
     }
 
-    private void faintEnemyPokemon() {
+    public void faintEnemyPokemon() {
         enemyPokemonSlider.gameObject.SetActive(false);
 
         enemyPokemonNameText.gameObject.SetActive(false);
@@ -536,6 +477,45 @@ public class PokemonManager : MonoBehaviour
 
         enemyPokemonTeamPokeballs[0].sprite = pokeballFaint;
         //enemyPokemonData = null;
+    }
+
+    public IEnumerator faintPokemon(PokemonData targetPokemon) {
+        
+        isReady = false;
+
+        if (getActiveOwnPokemon() == targetPokemon) {
+            faintOwnPokemon();
+        } else {
+            faintEnemyPokemon();
+        }
+        isReady = true;
+
+        yield return new WaitForSeconds(0.5f);
+    }
+
+
+    public IEnumerator displayMessage(string msg) {
+        
+        isReady = false;
+        messageText.gameObject.SetActive(true);
+        int currentSubstringIndex = 0;
+        string currentSubstring = "";
+
+        while (!currentSubstring.Equals(msg)) {
+            currentSubstring+= msg.Substring(currentSubstringIndex,  1);
+            currentSubstringIndex++;
+            messageText.text = currentSubstring;
+            yield return new WaitForSeconds(0.01f);
+        }
+        
+        yield return new WaitForSeconds(0.5f);
+
+        isReady = true;
+        
+    }
+
+    public void showMessage(string msg) {
+        StartCoroutine(displayMessage(msg));
     }
     
 }
