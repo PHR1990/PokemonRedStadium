@@ -6,25 +6,26 @@ public class EventQueueSystem : MonoBehaviour
 {
     public PokemonManager pokemonManager;
     
-    private bool isReady = false;
+    //private bool isReady = false;
 
     private Queue<BattleEvent> battleEventQueue;
 
     public void initiateQueueSystem() {
-        isReady = true;
+        pokemonManager.isReady = true;
         battleEventQueue = new Queue<BattleEvent>();
         StartCoroutine(messageProcessor());
     }
     
     public void enqueueEvent(BattleEvent battleEvent) {
+        Debug.Log("Event enqueued");
         
         battleEventQueue.Enqueue(battleEvent);
     }
     
     private IEnumerator messageProcessor() {
         while (true) {
-            if (battleEventQueue.Count > 0 && isReady) {
-                isReady = false;
+            if (battleEventQueue.Count > 0 && pokemonManager.isReady) {
+                pokemonManager.isReady = false;
                 BattleEvent battleEvent = battleEventQueue.Dequeue();
 
                 if (battleEvent.GetType() == typeof(TextMessageEvent)) {

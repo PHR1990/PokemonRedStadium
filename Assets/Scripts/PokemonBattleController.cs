@@ -154,7 +154,7 @@ public class PokemonBattleController
     }
 
     public void makeMove(int move) {
-
+        Debug.Log("Making move");
         if (ownPokemonData.getSpeedStat() > enemyPokemonData.getSpeedStat()) {
             emitEventDelegate(new TextMessageEvent(ownPokemonData.basePokemon.name.ToUpper() + " used " + ownPokemonData.basePokemon.moves[move].name.ToUpper() ));
             executeMove(ownPokemonData, enemyPokemonData, ownPokemonData.basePokemon.moves[move]);

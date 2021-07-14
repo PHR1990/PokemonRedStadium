@@ -305,7 +305,6 @@ D:\Dev\Unity\Projects\Pokemon Red Stadium\obj\Debug\Assembly-CSharp.csproj.CoreC
 D:\Dev\Unity\Projects\Pokemon Red Stadium\obj\Debug\Assembly-CSharp.csproj.CopyComplete
 D:\Dev\Unity\Projects\Pokemon Red Stadium\obj\Debug\Assembly-CSharp.dll
 D:\Dev\Unity\Projects\Pokemon Red Stadium\obj\Debug\Assembly-CSharp.pdb
-D:\Dev\Unity\Projects\Pokemon Red Stadium\Temp\Bin\Debug\nunit.framework.dll
 D:\Dev\Unity\Projects\Pokemon Red Stadium\Temp\Bin\Debug\Unity.2D.IK.Editor.dll
 D:\Dev\Unity\Projects\Pokemon Red Stadium\Temp\Bin\Debug\Unity.2D.IK.Runtime.dll
 D:\Dev\Unity\Projects\Pokemon Red Stadium\Temp\Bin\Debug\UnityEditor.CoreModule.dll
@@ -332,3 +331,9 @@ D:\Dev\Unity\Projects\Pokemon Red Stadium\Temp\Bin\Debug\UnityEditor.UIServiceMo
 D:\Dev\Unity\Projects\Pokemon Red Stadium\Temp\Bin\Debug\UnityEditor.UnityConnectModule.xml
 D:\Dev\Unity\Projects\Pokemon Red Stadium\Temp\Bin\Debug\Unity.2D.IK.Editor.pdb
 D:\Dev\Unity\Projects\Pokemon Red Stadium\Temp\Bin\Debug\Unity.2D.IK.Runtime.pdb
+D:\Dev\Unity\Projects\Pokemon Red Stadium\Temp\Bin\Debug\UnityEditor.DeviceSimulatorModule.dll
+D:\Dev\Unity\Projects\Pokemon Red Stadium\Temp\Bin\Debug\UnityEditor.QuickSearchModule.dll
+D:\Dev\Unity\Projects\Pokemon Red Stadium\Temp\Bin\Debug\UnityEditor.UIBuilderModule.dll
+D:\Dev\Unity\Projects\Pokemon Red Stadium\Temp\Bin\Debug\UnityEditor.DeviceSimulatorModule.xml
+D:\Dev\Unity\Projects\Pokemon Red Stadium\Temp\Bin\Debug\UnityEditor.QuickSearchModule.xml
+D:\Dev\Unity\Projects\Pokemon Red Stadium\Temp\Bin\Debug\UnityEditor.UIBuilderModule.xml

@@ -70,7 +70,7 @@ public class PokemonManager : MonoBehaviour
 
     private PokemonBattleController pokemonBattleController;
     
-    private bool isReady;
+    public bool isReady;
 
     private bool startIsDone = false;
 
@@ -125,10 +125,10 @@ public class PokemonManager : MonoBehaviour
             restartMatch();
         });
 
-        cancelPokemonSwitchButton.onClick.AddListener(() => {
+        /*cancelPokemonSwitchButton.onClick.AddListener(() => {
             pokemonSwitchMenu.SetActive(false);
         });
-
+        */
         eventQueueSystem.initiateQueueSystem();
         
         healAllPokemon();
@@ -151,9 +151,9 @@ public class PokemonManager : MonoBehaviour
         
         pokemonBattleController.emitEventDelegate+=eventQueueSystem.enqueueEvent;
 
-        bindTeamsToPokeball();
+        //bindTeamsToPokeball();
 
-        bindPokemonSwitchToTeam();
+        //bindPokemonSwitchToTeam();
 
         startIsDone = true;
 
@@ -266,6 +266,7 @@ public class PokemonManager : MonoBehaviour
         itemPanel.SetActive(false);
         movesCancelPanel.SetActive(false);
         movesPanel.SetActive(false);
+        Debug.Log("Enabling action panel");
         actionPanel.SetActive(true);
     }
     
@@ -309,6 +310,7 @@ public class PokemonManager : MonoBehaviour
     }
 
     private void fightButtonClicked() {
+        Debug.Log("Disabling action panel");
         actionPanel.SetActive(false);
         movesPanel.SetActive(true);
         movesCancelPanel.SetActive(true);
@@ -348,7 +350,7 @@ public class PokemonManager : MonoBehaviour
     }
 
     private void disableAllPanelsExceptText() {
-        
+        Debug.Log("Disabvling action panel");
         itemPanel.SetActive(false);
         movesCancelPanel.SetActive(false);
         movesPanel.SetActive(false);
@@ -419,7 +421,8 @@ public class PokemonManager : MonoBehaviour
         ownPokemonSlider.minValue = 0;
         ownPokemonSlider.value = getActiveOwnPokemon().currentHp;
 
-        ownPokemonNameText.text = getActiveOwnPokemon().basePokemon.name;
+        ownPokemonNameText.text = getActiveOwnPokemon().basePokemon.name.ToUpper();
+        ownPokemonLevelText.text = "Lv" + getActiveOwnPokemon().pokemonLevel;
         updateOwnPokemonHpText();
         
         ownPokemonImage.GetComponent<Image>().sprite = getActiveOwnPokemon().basePokemon.backSprite;
@@ -434,7 +437,8 @@ public class PokemonManager : MonoBehaviour
         enemyPokemonSlider.minValue = 0;
         enemyPokemonSlider.value = getActiveEnemyPokemon().currentHp;
 
-        enemyPokemonNameText.text = getActiveEnemyPokemon().basePokemon.name;
+        enemyPokemonNameText.text = getActiveEnemyPokemon().basePokemon.name.ToUpper();
+        enemyPokemonLevelText.text = "Lv" + getActiveEnemyPokemon().pokemonLevel;
         enemyPokemonImage.GetComponent<Image>().sprite = getActiveEnemyPokemon().basePokemon.frontSprite;
 
         enemyPokemonSlider.gameObject.SetActive(true);
@@ -515,6 +519,7 @@ public class PokemonManager : MonoBehaviour
     }
 
     public void showMessage(string msg) {
+        
         StartCoroutine(displayMessage(msg));
     }
     
