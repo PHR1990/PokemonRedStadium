@@ -1,0 +1,94 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &183759750262148343
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1572570689286972968}
+  - component: {fileID: 8507521660401321585}
+  m_Layer: 0
+  m_Name: BattleControlsComponent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1572570689286972968
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 183759750262148343}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8507521660401321585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 183759750262148343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f65e0eeadaa864c41b2afab28018bef0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownTeam:
+    pokemonData:
+    - basePokemon: {fileID: 11400000, guid: 769fe96204ecfa74c9a1ce9c3415eb2b, type: 2}
+      pokemonLevel: 5
+      currentHp: 15
+      accuracyStatisticsChange: 0
+      evasionStatisticsChange: 0
+      attackStatisticsChange: 0
+      defenseStatisticsChange: 0
+  enemyTeam:
+    pokemonData:
+    - basePokemon: {fileID: 11400000, guid: ebf83fee6fee3d14dbf31e7850acf12e, type: 2}
+      pokemonLevel: 7
+      currentHp: 20
+      accuracyStatisticsChange: 0
+      evasionStatisticsChange: 0
+      attackStatisticsChange: 0
+      defenseStatisticsChange: 0
+  messageText: {fileID: 0}
+  movesMenu: {fileID: 0}
+  movesCancelMenu: {fileID: 0}
+  actionMenu: {fileID: 0}
+  itemMenu: {fileID: 0}
+  fightButton: {fileID: 0}
+  bagButton: {fileID: 0}
+  pokemonButton: {fileID: 0}
+  runButton: {fileID: 0}
+  moveOneBtn: {fileID: 0}
+  moveTwoBtn: {fileID: 0}
+  moveThreeBtn: {fileID: 0}
+  moveFourBtn: {fileID: 0}
+  cancelMovesBtn: {fileID: 0}
+  ownPokemonSlider: {fileID: 0}
+  ownPokemonSliderFill: {fileID: 0}
+  ownPokemonNameText: {fileID: 0}
+  ownPokemonLevelText: {fileID: 0}
+  ownPokemonHpText: {fileID: 0}
+  ownPokemonImage: {fileID: 0}
+  enemyPokemonSlider: {fileID: 0}
+  enemyPokemonSliderFill: {fileID: 0}
+  enemyPokemonNameText: {fileID: 0}
+  enemyPokemonLevelText: {fileID: 0}
+  enemyPokemonImage: {fileID: 0}
+  pokeballEmpty: {fileID: 5836050718907240259, guid: ffe85bf8c5fe0d745be2712a63de49f8, type: 3}
+  pokeballFaint: {fileID: 6140219172232408187, guid: ffe85bf8c5fe0d745be2712a63de49f8, type: 3}
+  pokeballStatus: {fileID: 4464594796766934591, guid: ffe85bf8c5fe0d745be2712a63de49f8, type: 3}
+  pokeballFull: {fileID: 5899511935908729651, guid: ffe85bf8c5fe0d745be2712a63de49f8, type: 3}
+  messageBoxController: {fileID: 91268160796505409, guid: b57262e568c30834388443731f089abb, type: 3}
+  animationController: {fileID: 4556161754460225166, guid: 5c4f76303bf45b947b31ec4ad6d1dd21, type: 3}

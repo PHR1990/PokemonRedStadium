@@ -110,10 +110,10 @@ public class PokemonManager : MonoBehaviour
     void Start()
     {
         eventQueueSystem = gameObject.AddComponent<EventQueueSystem>();
-        eventQueueSystem.pokemonManager = this;
+        //eventQueueSystem.pokemonManager = this; // TODO 
 
         cancelMovesBtn.onClick.AddListener(() => {
-            eventQueueSystem.enqueueEvent(new TextMessageEvent(getActiveEnemyPokemon().basePokemon.name + " wants to battle!"));
+            eventQueueSystem.enqueueEvent(new TextMessageEvent(getActiveEnemyPokemon().basePokemon.name.ToUpper() + "\n" +" wants to battle!"));
             moveStateToAwaitingAction();
         });
 
@@ -142,7 +142,7 @@ public class PokemonManager : MonoBehaviour
    
         populateItemPanel();
 
-        eventQueueSystem.enqueueEvent(new TextMessageEvent(getActiveEnemyPokemon().basePokemon.name + " wants to battle!"));
+        eventQueueSystem.enqueueEvent(new TextMessageEvent(getActiveEnemyPokemon().basePokemon.name.ToUpper() + " \n wants to battle!"));
         moveStateToAwaitingAction();
 
         pokemonBattleController = new PokemonBattleController(getActiveOwnPokemon(), getActiveEnemyPokemon());
@@ -231,7 +231,7 @@ public class PokemonManager : MonoBehaviour
         initiateMoveControllers();
         
     }
-
+    
     private void bindTeamsToPokeball() {
         
         for (int x = 0; x < ownTeam.pokemonData.Count; x++) {
@@ -254,13 +254,7 @@ public class PokemonManager : MonoBehaviour
             menu.gameObject.SetActive(!(menu.gameObject.activeInHierarchy));
         }
     }
-
     
-
-    
-
-    
-
     private void moveStateToAwaitingAction() {
         isReady = true;
         itemPanel.SetActive(false);
@@ -454,10 +448,6 @@ public class PokemonManager : MonoBehaviour
         ownPokemonHpText.text = targetCurrentHp + "/ " + getActiveOwnPokemon().getHpStat();
     }
     
-    
-
-    
-
     public void faintOwnPokemon() {
         ownPokemonSlider.gameObject.SetActive(false);
 

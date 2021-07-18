@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6862046694124418016
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6862046694124417951}
+  - component: {fileID: 6862046694124417950}
+  m_Layer: 0
+  m_Name: BattleUiController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6862046694124417951
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6862046694124418016}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6862046694124417950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6862046694124418016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2f9dc2864f05e747b08f1d35a677a10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveOneBtn: {fileID: 0}
+  moveTwoBtn: {fileID: 0}
+  moveThreeBtn: {fileID: 0}
+  moveFourBtn: {fileID: 0}
+  cancelMovesBtn: {fileID: 0}
+  enemyPokemonSlider: {fileID: 0}
+  enemyPokemonNameText: {fileID: 0}
+  enemyPokemonLevelText: {fileID: 0}
+  enemyPokemonImage: {fileID: 0}
+  ownPokemonSlider: {fileID: 0}
+  ownPokemonNameText: {fileID: 0}
+  ownPokemonLevelText: {fileID: 0}
+  ownPokemonHpText: {fileID: 0}
+  ownPokemonImage: {fileID: 0}
+  movesPanel: {fileID: 0}
+  movesCancelPanel: {fileID: 0}
+  actionPanel: {fileID: 0}
+  itemPanel: {fileID: 0}
+  messageBoxController: {fileID: 0}
+  battleController: {fileID: 0}
+  ownPokemonSliderFill: {fileID: 0}
+  enemyPokemonSliderFill: {fileID: 0}

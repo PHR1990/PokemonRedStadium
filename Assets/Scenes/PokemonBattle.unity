@@ -734,7 +734,7 @@ GameObject:
   - component: {fileID: 260029266}
   - component: {fileID: 260029265}
   m_Layer: 0
-  m_Name: Image
+  m_Name: hpBarImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1117,7 +1117,7 @@ GameObject:
   - component: {fileID: 574952285}
   - component: {fileID: 574952284}
   m_Layer: 0
-  m_Name: Image
+  m_Name: hpBarImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1273,7 +1273,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &705520643
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2260,8 +2260,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: -5, y: 0}
-  m_SizeDelta: {x: -20, y: 0}
+  m_AnchoredPosition: {x: -3.4999998, y: 0}
+  m_SizeDelta: {x: -17, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1485563766
 GameObject:
@@ -2860,8 +2860,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: -5, y: 0}
-  m_SizeDelta: {x: -20, y: 0}
+  m_AnchoredPosition: {x: -3.5000002, y: 0}
+  m_SizeDelta: {x: -17, y: 0.7104}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1778879903
 GameObject:
@@ -3017,8 +3017,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 13.4186, y: -9.4723}
-  m_SizeDelta: {x: 615.8371, y: 104.2914}
+  m_AnchoredPosition: {x: 3.6743984, y: -1.2666}
+  m_SizeDelta: {x: 596.3487, y: 87.8801}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1782602017
 MonoBehaviour:
@@ -3361,7 +3361,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1996030619
 Transform:
   m_ObjectHideFlags: 0
@@ -3444,3 +3444,168 @@ MonoBehaviour:
   pokeballStatus: {fileID: 4464594796766934591, guid: ffe85bf8c5fe0d745be2712a63de49f8, type: 3}
   pokeballFull: {fileID: 5899511935908729651, guid: ffe85bf8c5fe0d745be2712a63de49f8, type: 3}
   isReady: 0
+--- !u!1001 &4063601954641726966
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 183759750262148343, guid: 9107bbaa452e645468d006363451aed7, type: 3}
+      propertyPath: m_Name
+      value: BattleControlsComponent
+      objectReference: {fileID: 0}
+    - target: {fileID: 1572570689286972968, guid: 9107bbaa452e645468d006363451aed7, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1572570689286972968, guid: 9107bbaa452e645468d006363451aed7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1572570689286972968, guid: 9107bbaa452e645468d006363451aed7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1572570689286972968, guid: 9107bbaa452e645468d006363451aed7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1572570689286972968, guid: 9107bbaa452e645468d006363451aed7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1572570689286972968, guid: 9107bbaa452e645468d006363451aed7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1572570689286972968, guid: 9107bbaa452e645468d006363451aed7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1572570689286972968, guid: 9107bbaa452e645468d006363451aed7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1572570689286972968, guid: 9107bbaa452e645468d006363451aed7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1572570689286972968, guid: 9107bbaa452e645468d006363451aed7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1572570689286972968, guid: 9107bbaa452e645468d006363451aed7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8507521660401321585, guid: 9107bbaa452e645468d006363451aed7, type: 3}
+      propertyPath: itemMenu
+      value: 
+      objectReference: {fileID: 456526471}
+    - target: {fileID: 8507521660401321585, guid: 9107bbaa452e645468d006363451aed7, type: 3}
+      propertyPath: bagButton
+      value: 
+      objectReference: {fileID: 178186568}
+    - target: {fileID: 8507521660401321585, guid: 9107bbaa452e645468d006363451aed7, type: 3}
+      propertyPath: movesMenu
+      value: 
+      objectReference: {fileID: 705520642}
+    - target: {fileID: 8507521660401321585, guid: 9107bbaa452e645468d006363451aed7, type: 3}
+      propertyPath: runButton
+      value: 
+      objectReference: {fileID: 1778879905}
+    - target: {fileID: 8507521660401321585, guid: 9107bbaa452e645468d006363451aed7, type: 3}
+      propertyPath: actionMenu
+      value: 
+      objectReference: {fileID: 1664882865}
+    - target: {fileID: 8507521660401321585, guid: 9107bbaa452e645468d006363451aed7, type: 3}
+      propertyPath: moveOneBtn
+      value: 
+      objectReference: {fileID: 1901582400}
+    - target: {fileID: 8507521660401321585, guid: 9107bbaa452e645468d006363451aed7, type: 3}
+      propertyPath: moveTwoBtn
+      value: 
+      objectReference: {fileID: 773450819}
+    - target: {fileID: 8507521660401321585, guid: 9107bbaa452e645468d006363451aed7, type: 3}
+      propertyPath: fightButton
+      value: 
+      objectReference: {fileID: 808772440}
+    - target: {fileID: 8507521660401321585, guid: 9107bbaa452e645468d006363451aed7, type: 3}
+      propertyPath: messageText
+      value: 
+      objectReference: {fileID: 1782602017}
+    - target: {fileID: 8507521660401321585, guid: 9107bbaa452e645468d006363451aed7, type: 3}
+      propertyPath: moveFourBtn
+      value: 
+      objectReference: {fileID: 236544504}
+    - target: {fileID: 8507521660401321585, guid: 9107bbaa452e645468d006363451aed7, type: 3}
+      propertyPath: moveThreeBtn
+      value: 
+      objectReference: {fileID: 230668875}
+    - target: {fileID: 8507521660401321585, guid: 9107bbaa452e645468d006363451aed7, type: 3}
+      propertyPath: pokemonButton
+      value: 
+      objectReference: {fileID: 1642923138}
+    - target: {fileID: 8507521660401321585, guid: 9107bbaa452e645468d006363451aed7, type: 3}
+      propertyPath: cancelMovesBtn
+      value: 
+      objectReference: {fileID: 1761858391}
+    - target: {fileID: 8507521660401321585, guid: 9107bbaa452e645468d006363451aed7, type: 3}
+      propertyPath: movesCancelMenu
+      value: 
+      objectReference: {fileID: 1860012794}
+    - target: {fileID: 8507521660401321585, guid: 9107bbaa452e645468d006363451aed7, type: 3}
+      propertyPath: ownPokemonImage
+      value: 
+      objectReference: {fileID: 1061692657}
+    - target: {fileID: 8507521660401321585, guid: 9107bbaa452e645468d006363451aed7, type: 3}
+      propertyPath: battleController
+      value: 
+      objectReference: {fileID: 9190085729979360871, guid: 5c3f3f1d3d7b78647af1acb5ac73507b, type: 3}
+    - target: {fileID: 8507521660401321585, guid: 9107bbaa452e645468d006363451aed7, type: 3}
+      propertyPath: ownPokemonHpText
+      value: 
+      objectReference: {fileID: 435519338}
+    - target: {fileID: 8507521660401321585, guid: 9107bbaa452e645468d006363451aed7, type: 3}
+      propertyPath: ownPokemonSlider
+      value: 
+      objectReference: {fileID: 1244080750}
+    - target: {fileID: 8507521660401321585, guid: 9107bbaa452e645468d006363451aed7, type: 3}
+      propertyPath: enemyPokemonImage
+      value: 
+      objectReference: {fileID: 243898871}
+    - target: {fileID: 8507521660401321585, guid: 9107bbaa452e645468d006363451aed7, type: 3}
+      propertyPath: battleUiController
+      value: 
+      objectReference: {fileID: 6862046694124417950, guid: dfc66fdb9d8ec2944a248aee802b3ddf, type: 3}
+    - target: {fileID: 8507521660401321585, guid: 9107bbaa452e645468d006363451aed7, type: 3}
+      propertyPath: enemyPokemonSlider
+      value: 
+      objectReference: {fileID: 1265343757}
+    - target: {fileID: 8507521660401321585, guid: 9107bbaa452e645468d006363451aed7, type: 3}
+      propertyPath: ownPokemonNameText
+      value: 
+      objectReference: {fileID: 1274487650}
+    - target: {fileID: 8507521660401321585, guid: 9107bbaa452e645468d006363451aed7, type: 3}
+      propertyPath: ownPokemonLevelText
+      value: 
+      objectReference: {fileID: 53415036}
+    - target: {fileID: 8507521660401321585, guid: 9107bbaa452e645468d006363451aed7, type: 3}
+      propertyPath: enemyPokemonNameText
+      value: 
+      objectReference: {fileID: 1682832531}
+    - target: {fileID: 8507521660401321585, guid: 9107bbaa452e645468d006363451aed7, type: 3}
+      propertyPath: ownPokemonSliderFill
+      value: 
+      objectReference: {fileID: 1125321542}
+    - target: {fileID: 8507521660401321585, guid: 9107bbaa452e645468d006363451aed7, type: 3}
+      propertyPath: enemyPokemonLevelText
+      value: 
+      objectReference: {fileID: 462813284}
+    - target: {fileID: 8507521660401321585, guid: 9107bbaa452e645468d006363451aed7, type: 3}
+      propertyPath: enemyPokemonSliderFill
+      value: 
+      objectReference: {fileID: 343441248}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9107bbaa452e645468d006363451aed7, type: 3}

@@ -53,20 +53,28 @@
     <UnityVersion>2021.1.5f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Components\BattleControlsComponent.cs" />
     <Compile Include="Assets\Scripts\PokemonBattleController.cs" />
+    <Compile Include="Assets\Scripts\Calculators\Gen3Calculator.cs" />
     <Compile Include="Assets\Scripts\Move.cs" />
     <Compile Include="Assets\Scripts\BattleEvent\MoveEvent.cs" />
+    <Compile Include="Assets\Scripts\Controllers\BattleUiController.cs" />
     <Compile Include="Assets\Scripts\PokemonManager.cs" />
     <Compile Include="Assets\Scripts\Team.cs" />
     <Compile Include="Assets\Scripts\BattleEvent\BattleEvent.cs" />
     <Compile Include="Assets\Scripts\BattleEvent\FaintEvent.cs" />
     <Compile Include="Assets\Scripts\PokemonData.cs" />
     <Compile Include="Assets\Scripts\Pokemon.cs" />
+    <Compile Include="Assets\Scripts\Calculators\Effectiveness.cs" />
     <Compile Include="Assets\Scripts\EventQueueSystem.cs" />
+    <Compile Include="Assets\Scripts\Controllers\MessageBoxController.cs" />
+    <Compile Include="Assets\Scripts\Controllers\BattleController.cs" />
     <Compile Include="Assets\Scripts\Type.cs" />
     <Compile Include="Assets\Scripts\Calculators.cs" />
     <Compile Include="Assets\Scripts\MapScene\MapController.cs" />
+    <Compile Include="Assets\Scripts\Calculators\GenXCalculator.cs" />
     <Compile Include="Assets\Scripts\Effect.cs" />
+    <Compile Include="Assets\Scripts\Controllers\AnimationController.cs" />
     <Compile Include="Assets\Scripts\BattleEvent\TextMessageEvent.cs" />
   </ItemGroup>
   <ItemGroup>
