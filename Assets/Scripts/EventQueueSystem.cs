@@ -27,7 +27,10 @@ public class EventQueueSystem : MonoBehaviour
                 battleControlsComponent.isReady = false;
                 BattleEvent battleEvent = battleEventQueue.Dequeue();
 
-                if (battleEvent.GetType() == typeof(TextMessageEvent)) {
+                if (battleEvent.GetType() == typeof(PlayerMustWaitEvent)) {
+                    battleControlsComponent.blockPlayer();
+                    
+                } else if (battleEvent.GetType() == typeof(TextMessageEvent)) {
                     
                     battleControlsComponent.displayMessage(((TextMessageEvent)battleEvent).textMessage);
 

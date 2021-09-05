@@ -10,10 +10,9 @@ public class BattleUiController : MonoBehaviour
     public Button moveFourBtn;
     public Button cancelMovesBtn;
 
-     public Slider enemyPokemonSlider;
+    public Slider enemyPokemonSlider;
     public Text enemyPokemonNameText;
     public Text enemyPokemonLevelText;
-    //public Text enemyPokemonHpText;
     public Image enemyPokemonImage;
 
     public Slider ownPokemonSlider;
@@ -212,6 +211,10 @@ public class BattleUiController : MonoBehaviour
         movesMenu.SetActive(false);
         //Debug.Log("Enabling action panel");
         actionMenu.SetActive(true);
+    }
+
+    public void moveStateToPlayerIsWatchingBattleAnimation() {
+        actionMenu.SetActive(false);
         
     }
     

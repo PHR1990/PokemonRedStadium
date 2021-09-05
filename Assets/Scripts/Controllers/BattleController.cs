@@ -46,9 +46,6 @@ public class BattleController : MonoBehaviour
     }
 
     private void executeMove(PokemonData attackingPokemon, PokemonData defendingPokemon, Move move) {
-        
-        // TODO need to implement sometihng else for selfdestruct
-        
 
         if (!calculator.willMoveHit(attackingPokemon, defendingPokemon, move)) {
             if (attackingPokemon.Equals(getActiveOwnPokemon())) {
@@ -150,7 +147,9 @@ public class BattleController : MonoBehaviour
     }
 
     public void executeMove(int move) {
-
+        
+        enqueueBattleEventDelegate(new PlayerMustWaitEvent());
+        
         PokemonData ownPokemonData = getActiveOwnPokemon();
         PokemonData enemyPokemonData = getActiveEnemyPokemon();
 
@@ -171,11 +170,9 @@ public class BattleController : MonoBehaviour
             }
             
         }
-        
-        enqueueBattleEventDelegate(new TextMessageEvent("What will " + ownPokemonData.basePokemon.name.ToUpper() + " do?"));
 
         triggerTurnsWereExecutedDelegate();
-        
+        enqueueBattleEventDelegate(new TextMessageEvent("What will \n" + ownPokemonData.basePokemon.name.ToUpper() + " do?"));
     }
     
 }

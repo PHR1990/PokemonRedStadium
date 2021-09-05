@@ -42,12 +42,10 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Components\BattleControlsComponent.cs" />
-     <Compile Include="Assets\Scripts\PokemonBattleController.cs" />
      <Compile Include="Assets\Scripts\Calculators\Gen3Calculator.cs" />
      <Compile Include="Assets\Scripts\Move.cs" />
      <Compile Include="Assets\Scripts\BattleEvent\MoveEvent.cs" />
      <Compile Include="Assets\Scripts\Controllers\BattleUiController.cs" />
-     <Compile Include="Assets\Scripts\PokemonManager.cs" />
      <Compile Include="Assets\Scripts\Team.cs" />
      <Compile Include="Assets\Scripts\BattleEvent\BattleEvent.cs" />
      <Compile Include="Assets\Scripts\BattleEvent\FaintEvent.cs" />
@@ -64,6 +62,7 @@
      <Compile Include="Assets\Scripts\Effect.cs" />
      <Compile Include="Assets\Scripts\Controllers\AnimationController.cs" />
      <Compile Include="Assets\Scripts\BattleEvent\TextMessageEvent.cs" />
+     <Compile Include="Assets\Scripts\BattleEvent\PlayerMustWaitEvent.cs" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
      </Reference>

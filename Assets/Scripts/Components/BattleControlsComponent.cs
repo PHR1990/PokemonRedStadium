@@ -130,7 +130,7 @@ public class BattleControlsComponent : MonoBehaviour
         battleUiController.enemyPokemonSliderFill = enemyPokemonSliderFill;
         battleUiController.getCurrentOwnActive = getCurrentOwnActivePokemon;
         battleUiController.getCurrentEnemyActive = getCurrentEnemyActivePokemon;
-        battleUiController.componentIsDoneDelegate = triggerTurnsWereExecuted;
+        battleUiController.componentIsDoneDelegate = unblockPlayer;
 
     }
 
@@ -183,7 +183,7 @@ public class BattleControlsComponent : MonoBehaviour
 
         //pokemonBattleController = new PokemonBattleController(getCurrentOwnActivePokemon, getCurrentEnemyActivePokemon);
         
-        battleController.triggerTurnsWereExecutedDelegate=triggerTurnsWereExecuted;
+        battleController.triggerTurnsWereExecutedDelegate=unblockPlayer;
         
         battleController.enqueueBattleEventDelegate=eventQueueSystem.enqueueEvent;
 
@@ -192,12 +192,6 @@ public class BattleControlsComponent : MonoBehaviour
         //bindPokemonSwitchToTeam();
 
         //startIsDone = true;
-    }
-
-    private void triggerTurnsWereExecuted() {
-        battleUiController.moveStateToAwaitingAction();
-        isReady = true;
-        
     }
 
     public void displayMessage(string txtMessage) {
@@ -209,5 +203,17 @@ public class BattleControlsComponent : MonoBehaviour
     }
 
     public void faintPokemon(PokemonData pokemonData) {
+    }
+
+    public void blockPlayer() {
+        
+        battleUiController.moveStateToPlayerIsWatchingBattleAnimation();
+        isReady = true;
+    }
+    
+    public void unblockPlayer() {
+        
+        battleUiController.moveStateToAwaitingAction();
+        isReady = true;
     }
 }
