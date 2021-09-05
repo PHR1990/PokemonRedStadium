@@ -129,7 +129,7 @@ public class BattleControlsComponent : MonoBehaviour
         battleUiController.ownPokemonSliderFill = ownPokemonSliderFill;
         battleUiController.enemyPokemonSliderFill = enemyPokemonSliderFill;
         battleUiController.getCurrentOwnActive = getCurrentOwnActivePokemon;
-        battleUiController.getCurrentEnemyActive = getCurrentOwnActivePokemon;
+        battleUiController.getCurrentEnemyActive = getCurrentEnemyActivePokemon;
         battleUiController.componentIsDoneDelegate = triggerTurnsWereExecuted;
 
     }

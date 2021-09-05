@@ -157,20 +157,37 @@ public class BattleUiController : MonoBehaviour
             if (updateText) {
                 updateOwnPokemonHpText(defendingPokemon);
             }
-            updateHealthBarColors();
+            
 
             yield return new WaitForSeconds(0.1f);
         }
         
         targetPokemon.gameObject.SetActive(true);
-
+        
+        updateHealthBarColors(defendingPokemon);
+        
         componentIsDoneDelegate();
         //isReady = true;
     }
 
-    private void updateHealthBarColors() {
-        if (getCurrentEnemyActive() != null) enemyPokemonSliderFill.color = decideTargetColor(getCurrentEnemyActive().getHpStat(), getCurrentEnemyActive().currentHp);
-        if (getCurrentOwnActive != null) ownPokemonSliderFill.color = decideTargetColor(getCurrentOwnActive().getHpStat(), getCurrentOwnActive().currentHp);
+    private void updateHealthBarColors(PokemonData defendingPokemon) {
+        if (getCurrentEnemyActive() == defendingPokemon) {
+            updateEnemyPokemonHpBarColor();
+        }
+
+        if (getCurrentOwnActive() == defendingPokemon) {
+            updateOwnPokemonHpBarColor();
+        }
+    }
+
+    private void updateOwnPokemonHpBarColor() {
+        ownPokemonSliderFill.color
+            = decideTargetColor(getCurrentOwnActive().getHpStat(), getCurrentOwnActive().currentHp);
+    }
+
+    private void updateEnemyPokemonHpBarColor() {
+        enemyPokemonSliderFill.color
+            = decideTargetColor(getCurrentEnemyActive().getHpStat(), getCurrentEnemyActive().currentHp);
     }
 
     private Color decideTargetColor(int maxHp, int currentHp) {
